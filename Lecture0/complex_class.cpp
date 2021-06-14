@@ -21,7 +21,7 @@ class custom_complex{
     custom_complex add(custom_complex obj);
     custom_complex subtract(custom_complex obj);
     custom_complex multiply(custom_complex obj);
-    custom_complex divide(custom_complex obj);
+    //custom_complex divide(custom_complex obj);
     
     void __print(){
         cout<<rl;
