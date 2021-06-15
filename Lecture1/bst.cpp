@@ -9,51 +9,51 @@ class bst{
 
 	public:
 
+	bst(){
 
+	}
 	bst(int val){
 		this->val=val;
 		left=nullptr;
 		right=nullptr;
 	}
 
-	void insert_element(bst* &root,int val){
+	bst* insert_element(bst* root,int val){
 		if(root==nullptr){
 			root=new bst(val);
-			
 
-
-
+			return root;
 		}
-
+	
 		else if(root->val>val)
-			root->insert_element(root->left,val);
+			 root->left=insert_element(root->left,val);
 		else
-			root->insert_element(root->right,val);
+			root->right=insert_element(root->right,val);
 
 	}
 
-	bool search_val(bst* &root,int val){
-		if(root==nullptr)
+	bool search_val(int val){
+		if(this==nullptr)
 			return false;
 
-		else if(root->val==val)
+		else if(this->val==val)
 			return true;
-		else if(root->val>val)
-			return search_val(root->left,val);
+		else if(this->val>val)
+			return left->search_val(val);
 		else
-			return search_val(root->right,val);
+			return right->search_val(val);
 	}
 
 	void print_inorder(){
 		if(this==nullptr)
 			return;
 
-		this->left->print_inorder();
+		left->print_inorder();
 
-		cout<<this->val<<endl;
+		cout<<val<<endl;
 
 		
-		this->right->print_inorder();
+		right->print_inorder();
 
 	}
 		
@@ -69,17 +69,18 @@ int main(){
 		freopen("output.txt","w",stdout);
 	#endif
 
-	bst* root1=new bst(10);
-	root1->insert_element(root1,9);
-	root1->insert_element(root1,15);
-	root1->insert_element(root1,110);
-	root1->insert_element(root1,2);
-	root1->insert_element(root1,1);
+	bst b,*root1=nullptr;
+	root1=b.insert_element(root1,10);
+	root1=b.insert_element(root1,9);
+	root1=b.insert_element(root1,15);
+	root1=b.insert_element(root1,110);
+	root1=b.insert_element(root1,2);
+	root1=b.insert_element(root1,1);
 
 	root1->print_inorder();
 
 	cout<<endl;
 
-	cout<<root1->search_val(root1,9)<<endl<<root1->search_val(root1,1);
+	cout<<root1->search_val(9)<<endl<<root1->search_val(1);
 
 }
